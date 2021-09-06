@@ -39,14 +39,14 @@ When i click on Add after filling out the form i want to be taken to the detail 
 - we need to redirect to the details view of this book
  
  
-When i click on a link 'edit' under the book details i want to be taken to a form where i can edit the book 
+When i click on a link 'edit' under the book details i want to be taken to a form where i can edit the book ✅ 
 - we need a link in the book details view to /books/edit/:id
 - we need that route
 - we need to retrieve that book from the db
 - we need to render a form displaying the fields from that book
  
  
-When i click on edit i want to be taken to the book details view showing the changed fields of the book and the book should be updated in the database 
+When i click on edit i want to be taken to the book details view showing the changed fields of the book and the book should be updated in the database ✅ 
 - we need a post route to /books/edit/:id
 - in the route we need to update the book in the db
 - we need to redirect to the details view of that book

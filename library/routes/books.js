@@ -60,6 +60,56 @@ router.get('/books/:id', (req, res, next) => {
 		})
 });
 
+router.get('/books/edit/:id', (req, res, next) => {
+	console.log('editing this book');
+	const bookId = req.params.id;
+	Book.findById(bookId)
+		.then(bookFromDB => {
+			console.log(bookFromDB);
+			res.render('bookEdit', { book: bookFromDB });
+		})
+		.catch(err => {
+			next(err);
+		})
+});
+
+router.post('/books/edit/:id', (req, res, next) => {
+	const bookId = req.params.id;
+	// const { title, author, description, rating } = req.body;
+	const titleFromInput = req.body.title;
+	const descriptionFromInput = req.body.description;
+	const authorFromInput = req.body.author;
+	const ratingFromInput = req.body.rating;
+
+	// if findByIdAndUpdate() should return the updated book -> add {new: true}
+	Book.findByIdAndUpdate(bookId, {
+		title: titleFromInput,
+		description: descriptionFromInput,
+		author: authorFromInput,
+		rating: ratingFromInput
+	}, { new: true })
+		.then(updatedBook => {
+			console.log(updatedBook);
+			// redirect to the details route
+			res.redirect(`/books/${updatedBook._id}`);
+		})
+		.catch(err => {
+			next(err);
+		})
+});
+
+router.get('/books/delete/:id', (req, res, next) => {
+	const bookId = req.params.id;
+	Book.findByIdAndDelete(bookId)
+		.then(() => {
+			// redirect to the books list	
+			res.redirect('/books');
+		})
+		.catch(err => {
+			next(err);
+		})
+});
+
 
 
 module.exports = router;
