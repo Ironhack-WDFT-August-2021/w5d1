@@ -1,0 +1,7 @@
+{{!-- this sets a context in hbs -> you don't have to do : book.title etc --}}
+{{#with book}}
+	<h1>Information about {{title}}</h1>
+	<p>Written by: {{author}}</p>
+	<p>Summary: {{description}}</p>
+	<p>Rating: {{rating}}</p>
+{{/with}}
